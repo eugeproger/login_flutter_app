@@ -36,7 +36,7 @@ class OnBoardingScreen extends StatelessWidget {
                           Text(tOnBoardingSubTitle1, textAlign: TextAlign.center,),
                         ],
                       ),
-                      Text(tOnBoardingCounter1, style: Theme.of(context).brightness == Brightness.light ? TTextTheme.lightTextTheme.headline6 : TTextTheme.darkTextTheme.head),
+                      Text(tOnBoardingCounter1, style: Theme.of(context).brightness == Brightne
                     ],
                   )),
               Container(color: tOnBoardingPage2Color),

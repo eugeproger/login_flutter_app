@@ -31,6 +31,4 @@ class TTextTheme {
         fontSize:24,
       ),
   );
-
-  static TextTheme systemTextTheme = TextTheme
 }
