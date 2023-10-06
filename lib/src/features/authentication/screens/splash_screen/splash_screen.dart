@@ -41,14 +41,12 @@ class SplashScreen extends StatelessWidget {
                   children: [
                     Text(
                       tAppName,
-                      style: Theme.of(context).brightness == Brightness.light
-                          ? TTextTheme.lightTextTheme.headline2
-                          : TTextTheme.darkTextTheme.headline2,
+                      style: Theme.of(context).textTheme.headline3,
                     ),
-                    Text(tAppTagLine,
-                        style: Theme.of(context).brightness == Brightness.light
-                            ? TTextTheme.lightTextTheme.subtitle2
-                            : TTextTheme.darkTextTheme.subtitle2),
+                    Text(
+                      tAppTagLine,
+                      style: Theme.of(context).textTheme.headline2,
+                    ),
                   ],
                 ),
               ),

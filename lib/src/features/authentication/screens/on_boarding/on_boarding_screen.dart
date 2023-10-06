@@ -1,48 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
-import 'package:login_flutter_app/src/constants/colors.dart';
-import 'package:login_flutter_app/src/constants/image_strings.dart';
-import 'package:login_flutter_app/src/constants/sizes.dart';
-import 'package:login_flutter_app/src/constants/text_strings.dart';
-import 'package:login_flutter_app/src/utils/theme/widget_theme/text_theme.dart';
+import 'package:login_flutter_app/src/features/authentication/controllers/on_boarding_controller.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final obController = OnBoardingController();
     return Scaffold(
       body: Stack(
+        alignment: Alignment.center,
         children: [
           LiquidSwipe(
-            pages: [
-              Container(
-                  padding: const EdgeInsets.all(tDefaultSize),
-                  color: tOnBoardingPage1Color,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SvgPicture.asset(tOnBoardingImage1),
-                      Column(
-                        children: [
-                          Text(
-                            tOnBoardingTitle1,
-                            style:
-                                Theme.of(context).brightness == Brightness.light
-                                    ? TTextTheme.lightTextTheme.headline3
-                                    : TTextTheme.darkTextTheme.headline3,
-                          ),
-                          Text(tOnBoardingSubTitle1, textAlign: TextAlign.center,),
-                        ],
-                      ),
-                      Text(tOnBoardingCounter1, style: Theme.of(context).brightness == Brightne
-                    ],
-                  )),
-              Container(color: tOnBoardingPage2Color),
-              Container(color: tOnBoardingPage3Color),
-            ],
-          )
+            pages: obController.pages,
+            liquidController: obController.controller,
+            slideIconWidget: const Icon(Icons.arrow_back_ios),
+            enableSideReveal: true,
+            onPageChangeCallback: obController.onPageChangedCallback,
+          ),
+          Positioned(
+            bottom: 60.0,
+            child: OutlinedButton(
+              onPressed: () => obController.animateToNextSlide(),
+              style: ElevatedButton.styleFrom(
+                side: const BorderSide(color: Colors.black26),
+                shape: const CircleBorder(),
+                padding: const EdgeInsets.all(20),
+                onPrimary: Colors.white,
+              ),
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: const BoxDecoration(
+                    color: Color(0xff272727), shape: BoxShape.circle),
+                child: const Icon(Icons.arrow_forward_ios),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 50,
+            right: 20,
+            child: TextButton(
+              onPressed: () => obController.skip(),
+              child: const Text("Skip", style: TextStyle(color: Colors.grey)),
+            ),
+          ),
+          Obx(
+            () => Positioned(
+              bottom: 10,
+              child: AnimatedSmoothIndicator(
+                activeIndex: obController.currentPage.value,
+                count: 3,
+                effect: const WormEffect(
+                  activeDotColor: Color(0xff272727),
+                  dotHeight: 5.0,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

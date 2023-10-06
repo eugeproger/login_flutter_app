@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_flutter_app/src/features/authentication/screens/on_boarding/on_boarding_screen.dart';
-import 'package:login_flutter_app/src/features/authentication/screens/welcome/welcome_screen.dart';
 
 class SplashScreenController extends GetxController {
   static SplashScreenController get find => Get.find();

@@ -12,6 +12,6 @@ class OnBoardingModel {
     required this.title,
     required this.subTitle,
     required this.counterText,
-    required this.bgColor
+    required this.bgColor,
   });
 }
